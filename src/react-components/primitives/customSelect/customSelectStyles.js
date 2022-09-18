@@ -17,6 +17,7 @@ const customSelectStyles = {
   }),
   menuList: (provided) => ({
     ...provided,
+    maxHeight: "200px",
     scrollbarColor: "#FFD400 #C3C3C3",
     scrollbarWidth: "thin",
     "::-webkit-scrollbar": {
@@ -70,10 +71,11 @@ const customSelectStyles = {
   }),
   control: (provided, state) => ({
     ...provided,
+    minWidth: "100px",
     width: "100%",
     zIndex: state.isFocused ? 111 : 109,
     background: state.isFocused ? "#ffffff" : "#eeeeee",
-    borderRadius: 20,
+    borderRadius: 32,
     border: `1px solid ${state.isFocused ? "#e6e6e6" : "transparent"}`,
     paddingLeft: 8,
     boxShadow: "none",
