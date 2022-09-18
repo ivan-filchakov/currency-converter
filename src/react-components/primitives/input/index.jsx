@@ -2,10 +2,17 @@ import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import "./style.css"
 
-function Input({ type, onChange, id }) {
-  const [inputState, setInputState] = useState()
+function Input(
+  {
+    type,
+    value,
+    onChange,
+    id,
+  },
+) {
+  const [inputState, setInputState] = useState(value)
   function handleInputChange(el) {
-    setInputState(el.target.value)
+    setInputState(Number(el.target.value))
   }
   useEffect(() => {
     if (typeof onChange === "function") onChange(inputState)
@@ -15,6 +22,7 @@ function Input({ type, onChange, id }) {
     <label htmlFor={id} className="input">
       <input
         type={type}
+        value={inputState}
         onChange={handleInputChange}
         id={id}
       />
@@ -25,6 +33,7 @@ function Input({ type, onChange, id }) {
 export default Input
 Input.propTypes = {
   type: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 }
