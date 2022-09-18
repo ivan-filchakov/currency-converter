@@ -1,0 +1,9 @@
+.currencySelect {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+}
+
+.currencySelect__input {
+  flex-grow: 1;
+}
