@@ -4,7 +4,7 @@ import Input from "../primitives/input"
 import Select from "../primitives/customSelect"
 import "./style.css"
 
-function CurrencySelector(
+function CurrencySelect(
   {
     currencies,
     selectedCurrency,
@@ -30,8 +30,9 @@ function CurrencySelector(
       <div className="currencySelect__select">
         <Select
           options={currencies}
-          value={selectedCurrency}
+          value={currencyState.selectedCurrency}
           onChange={handleSelectChange}
+          placeholder="Choose currency..."
         />
       </div>
       <div className="currencySelect__input">
@@ -46,18 +47,22 @@ function CurrencySelector(
   )
 }
 
-export default CurrencySelector
-CurrencySelector.propTypes = {
+export default CurrencySelect
+CurrencySelect.propTypes = {
   currencies: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string,
       label: PropTypes.string,
     }),
-  ).isRequired,
+  ),
   selectedCurrency: PropTypes.shape({
     value: PropTypes.string,
     label: PropTypes.string,
-  }).isRequired,
+  }),
   amount: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
+}
+CurrencySelect.defaultProps = {
+  currencies: undefined,
+  selectedCurrency: undefined,
 }

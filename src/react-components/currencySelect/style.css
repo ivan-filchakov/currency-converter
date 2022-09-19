@@ -4,6 +4,11 @@
   gap: 16px;
 }
 
+.currencySelect__select {
+  width: 240px;
+  font-size: 12px;
+}
+
 .currencySelect__input {
   flex-grow: 1;
 }

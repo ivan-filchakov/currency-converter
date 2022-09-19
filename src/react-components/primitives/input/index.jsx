@@ -18,11 +18,20 @@ function Input(
     if (typeof onChange === "function") onChange(inputState)
   }, [inputState])
 
+  // const displayValue = useEffect(() => {
+  //   if (value) setInputState(value)
+  // }, [value])
+
+  // const displayValue = (state) => {
+  //   if (!state) return ""
+  //   return Number(state).toString()
+  // }
+
   return (
     <label htmlFor={id} className="input">
       <input
         type={type}
-        value={inputState}
+        value={value}
         onChange={handleInputChange}
         id={id}
       />

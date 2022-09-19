@@ -1,0 +1,7 @@
+.converter {
+  width: 100%;
+  max-width: 666px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
