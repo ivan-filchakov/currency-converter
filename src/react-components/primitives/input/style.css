@@ -12,6 +12,8 @@
   border: none;
   outline: none;
   background: none;
+  text-align: right;
+  font-weight: 700;
 }
 
 .input:hover {
