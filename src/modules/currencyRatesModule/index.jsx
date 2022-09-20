@@ -33,6 +33,9 @@ listenCurrencyRates.startListening({
     try {
       const { base, rates } = await getLatestRates()
       const { symbols } = await getSymbols()
+      /**
+       * reformatting data from api so it fits into components
+       */
       const formatedSymbols = Object.values(symbols).map((el) => {
         el.value = el.code
         el.label = `${el.code} - ${el.description}`
