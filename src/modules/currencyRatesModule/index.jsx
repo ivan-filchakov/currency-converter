@@ -47,6 +47,7 @@ listenCurrencyRates.startListening({
         rates,
         formatedSymbols,
         base: symbols[base],
+        timestamp: new Date().toString(),
       }
       listenerApi.dispatch(currencyRates.actions.requestSuccess(result))
     } catch (e) {
