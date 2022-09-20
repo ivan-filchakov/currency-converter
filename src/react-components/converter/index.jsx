@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
+import { RiExchangeDollarFill } from "react-icons/ri"
 import CurrencySelect from "../currencySelect"
 import useRatesData from "../../store/store.selectors"
 import "./style.css"
@@ -34,7 +35,6 @@ function Converter() {
       rate: ratesData.rates?.[defaultB],
       amount: 0,
     },
-    isLoaded: true,
   }), [ratesData.rates])
 
   const handleCurrencyChange = (el, direction = "AB") => {
@@ -59,6 +59,12 @@ function Converter() {
     })
   }
 
+  const [rotate, setRotate] = useState(1)
+  useEffect(
+    () => setRotate(-rotate),
+    [converterState?.A.selected, converterState?.B.selected],
+  )
+
   const isLoaded = converterState?.A.rate && converterState?.B.rate
 
   return (
@@ -79,6 +85,12 @@ function Converter() {
           amount={converterState.B.amount}
           onChange={(e) => handleCurrencyChange(e, "BA")}
         />
+        <div
+          className="converter__bg"
+          style={{ transform: `rotate(${rotate * 180}deg)` }}
+        >
+          <RiExchangeDollarFill size="64px" color="rgba(0,0,0,0.04)" />
+        </div>
       </div>
     )
   )
