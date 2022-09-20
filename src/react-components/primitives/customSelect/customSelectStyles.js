@@ -35,7 +35,7 @@ const customSelectStyles = {
   menu: (provided) => ({
     ...provided,
     borderRadius: 20,
-    boxShadow: "none",
+    boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
     backgroundColor: "#eeeeee",
     top: -8,
     zIndex: 110,
@@ -74,7 +74,7 @@ const customSelectStyles = {
     minWidth: "100px",
     width: "100%",
     zIndex: state.isFocused ? 111 : 109,
-    background: state.isFocused ? "#ffffff" : "#eeeeee",
+    background: "#ffffff",
     borderRadius: 32,
     border: `1px solid ${state.isFocused ? "#e6e6e6" : "transparent"}`,
     paddingLeft: 8,

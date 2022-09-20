@@ -41,6 +41,14 @@ function CurrencySelect(
 
   return (
     <div className="currencySelect">
+      <div className="currencySelect__input">
+        <Input
+          type="number"
+          value={amount}
+          onChange={handleInputChange}
+          id={`input-default-${defaultCurrency.value}`}
+        />
+      </div>
       <div className="currencySelect__flag">
         <FlagIcon id={flagId} />
       </div>
@@ -50,14 +58,6 @@ function CurrencySelect(
           value={currencyState.selectedCurrency || defaultCurrency}
           onChange={handleSelectChange}
           placeholder="Choose currency..."
-        />
-      </div>
-      <div className="currencySelect__input">
-        <Input
-          type="number"
-          value={amount}
-          onChange={handleInputChange}
-          id={`input-default-${defaultCurrency.value}`}
         />
       </div>
     </div>
