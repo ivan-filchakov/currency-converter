@@ -17,5 +17,6 @@
 }
 
 .header__status {
-  color: #ffffff;
+  display: flex;
+  gap: 16px;
 }

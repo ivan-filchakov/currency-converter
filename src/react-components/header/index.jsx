@@ -1,5 +1,6 @@
 import React from "react"
 import { BsCurrencyExchange } from "react-icons/bs"
+import StatusBar from "../statusBar"
 import "./style.css"
 
 function Header() {
@@ -15,7 +16,8 @@ function Header() {
         </span>
       </div>
       <div className="header__status">
-        curr status
+        <StatusBar from="USD" to="UAH" />
+        <StatusBar from="EUR" to="UAH" />
       </div>
     </header>
   )
