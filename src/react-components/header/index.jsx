@@ -8,12 +8,9 @@ function Header() {
     <header className="header">
       <div className="header__logo">
         <BsCurrencyExchange
-          color="#FFD400"
+          color="#2c2c2c"
           size="32px"
         />
-        <span>
-          Currency converter
-        </span>
       </div>
       <div className="header__status">
         <StatusBar from="USD" to="UAH" />

@@ -5,12 +5,11 @@
   gap: 8px;
   padding: 12px 16px;
   border-radius: 24px;
-  background: #FFD400;
+  background: #eeeeee;
   color: #000000;
 }
 
 .statusBar__value {
-  font-size: 20px;
   font-weight: 700;
   line-height: 1;
 }

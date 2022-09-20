@@ -4,14 +4,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  background: #2c2c2c;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
 }
 
 .header__logo {
   align-items: center;
   display: flex;
   gap: 8px;
-  color: #ffffff;
+  color: #2c2c2c;
   font-weight: 700;
   font-size: 18px;
 }
