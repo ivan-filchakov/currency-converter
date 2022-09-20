@@ -11,21 +11,13 @@ function Input(
   },
 ) {
   const [inputState, setInputState] = useState(value)
-  function handleInputChange(el) {
-    setInputState(Number(el.target.value))
-  }
+
+  const handleInputChange = (el) => setInputState(Number(el.target.value))
+  const handleFocus = (el) => el.target.select()
+
   useEffect(() => {
     if (typeof onChange === "function") onChange(inputState)
   }, [inputState])
-
-  // const displayValue = useEffect(() => {
-  //   if (value) setInputState(value)
-  // }, [value])
-
-  // const displayValue = (state) => {
-  //   if (!state) return ""
-  //   return Number(state).toString()
-  // }
 
   return (
     <label htmlFor={id} className="input">
@@ -33,6 +25,7 @@ function Input(
         type={type}
         value={value}
         onChange={handleInputChange}
+        onFocus={handleFocus}
         id={id}
       />
     </label>
