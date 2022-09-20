@@ -23,7 +23,7 @@ function Footer() {
       </div>
       <div className="footer__button">
         <a
-          href="https://github.com/ivan-filchakov"
+          href="https://github.com/ivan-filchakov/currency-converter"
           target="_blank"
           rel="noopener noreferrer"
         >
