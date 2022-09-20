@@ -4,6 +4,12 @@
   gap: 16px;
 }
 
+.currencySelect__flag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .currencySelect__select {
   width: 240px;
   font-size: 12px;
