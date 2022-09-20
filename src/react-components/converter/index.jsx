@@ -6,92 +6,79 @@ import "./style.css"
 
 function Converter() {
   const ratesData = useRatesData()
-  const [converterState, setConverterState] = useState(null)
 
   const dispatch = useDispatch()
   useEffect(() => {
     if (!ratesData.rates) dispatch({ type: "currencyRates/request" })
   }, [ratesData.rates])
 
+  const defaultA = "USD"
+  const defaultB = "UAH"
+
+  const [converterState, setConverterState] = useState(null)
+
   useEffect(() => setConverterState({
     currencies: ratesData.formatedSymbols,
-    base: ratesData.base,
     rates: ratesData.rates,
-    currencyA: { selected: null, amount: 0 },
-    currencyB: { selected: null, amount: 0 },
-
-    // ======= WITH DEFAULT VALUES =========
-    // currencyB: {
-    //   default: ratesData.formatedSymbols?.find(
-    //     (el) => el.value === defaultB,
-    //   ),
-    //   rate: ratesData.rates?.[defaultB],
-    //   amount: 0,
-    // },
-    // ======= WITH DEFAULT VALUES =========
+    A: {
+      default: ratesData.formatedSymbols?.find(
+        (el) => el.value === defaultA,
+      ),
+      rate: ratesData.rates?.[defaultA],
+      amount: 0,
+    },
+    B: {
+      default: ratesData.formatedSymbols?.find(
+        (el) => el.value === defaultB,
+      ),
+      rate: ratesData.rates?.[defaultB],
+      amount: 0,
+    },
+    isLoaded: true,
   }), [ratesData.rates])
 
-  // console.log(converterState)
+  const handleCurrencyChange = (el, direction = "AB") => {
+    const [editCurrency, targetCurrency] = direction.split("")
+    const exRate = converterState[editCurrency].rate
+    const newRate = converterState.rates?.[el.selectedCurrency?.value] || exRate
+    const convertRate = converterState[targetCurrency].rate
+    const newAmount = Number((el.amount * (convertRate / newRate)).toFixed(2))
 
-  const handleCurrencyAChange = (el) => {
     setConverterState({
       ...converterState,
-      currencyA: {
+      [editCurrency]: {
+        ...converterState[editCurrency],
         selected: el.selectedCurrency,
+        rate: newRate,
         amount: el.amount,
       },
-      currencyB: {
-        ...converterState.currencyB,
-        amount: el.amount * 10,
+      [targetCurrency]: {
+        ...converterState[targetCurrency],
+        amount: newAmount,
       },
     })
   }
 
-  const handleCurrencyBChange = (el) => {
-    setConverterState({
-      ...converterState,
-      currencyB: {
-        selected: el.selectedCurrency,
-        amount: el.amount,
-      },
-    })
-  }
+  const isLoaded = converterState?.A.rate && converterState?.B.rate
 
   return (
-    ratesData.rates
+    isLoaded
     && (
       <div className="converter">
         <CurrencySelect
           currencies={converterState.currencies}
-          selectedCurrency={converterState.currencyA.selected}
-          amount={converterState.currencyA.amount}
-          onChange={handleCurrencyAChange} // eslint-disable-line react/jsx-no-bind
+          selectedCurrency={converterState.A.selected}
+          defaultCurrency={converterState.A.default}
+          amount={converterState.A.amount}
+          onChange={(e) => handleCurrencyChange(e, "AB")}
         />
         <CurrencySelect
           currencies={converterState.currencies}
-          selectedCurrency={converterState.currencyB.selectedCurrency}
-          amount={converterState.currencyB.amount}
-          onChange={handleCurrencyBChange} // eslint-disable-line react/jsx-no-bind
+          selectedCurrency={converterState.B.selected}
+          defaultCurrency={converterState.B.default}
+          amount={converterState.B.amount}
+          onChange={(e) => handleCurrencyChange(e, "BA")}
         />
-        <h4 style={{ textAlign: "center" }}>CONVERTER STATE:</h4>
-        <span>
-          <strong>Currency A:</strong>
-          <br />
-          {JSON.stringify(converterState?.currencyA)}
-        </span>
-        <span>
-          <strong>Currency B:</strong>
-          <br />
-          {JSON.stringify(converterState?.currencyB)}
-        </span>
-        <span>
-          typeof amount A: ===&nbsp;
-          {JSON.stringify(typeof converterState?.currencyA.amount)}
-        </span>
-        <span>
-          typeof amount B: ===&nbsp;
-          {JSON.stringify(typeof converterState?.currencyA.amount)}
-        </span>
       </div>
     )
   )
